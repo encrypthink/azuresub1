@@ -100,8 +100,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
                     <input type="date" name="date" class="form-control" placeholder="Date"/>
                <div>
                <div class="col-md-12">
-                    <input type="submit" name="submit" value="Submit" />
-                    <input type="submit" name="load_data" value="Load Data" />
+                    <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
+                    <input type="submit" class="btn btn-warning" name="load_data" value="Load Data" />
                </div>
               </form>
           </div>
