@@ -1,19 +1,41 @@
-<?php
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:codegraphsdb.database.windows.net,1433; Database = submissionDicodingCRUD", "codegraphs", "CUMI12panggang");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "codegraphs@codegraphsdb", "pwd" => "CUMI12panggang", "Database" => "submissionDicodingCRUD", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:codegraphsdb.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-
+<html>
+ <head>
+ <Title>Registration Form</Title>
+ <style type="text/css">
+ 	body { background-color: #fff; border-top: solid 10px #000;
+ 	    color: #333; font-size: .85em; margin: 20; padding: 20;
+ 	    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+ 	}
+ 	h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
+ 	h1 { font-size: 2em; }
+ 	h2 { font-size: 1.75em; }
+ 	h3 { font-size: 1.2em; }
+ 	table { margin-top: 0.75em; }
+ 	th { font-size: 1.2em; text-align: left; border: none; padding-left: 0; }
+ 	td { padding: 0.25em 2em 0.25em 0em; border: 0 none; }
+ </style>
+ </head>
+ <body>
+ <h1>Register here!</h1>
+ <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
+ <form method="post" action="index.php" enctype="multipart/form-data" >
+       Name  <input type="text" name="name" id="name"/></br></br>
+       Email <input type="text" name="email" id="email"/></br></br>
+       Job <input type="text" name="job" id="job"/></br></br>
+       <input type="submit" name="submit" value="Submit" />
+       <input type="submit" name="load_data" value="Load Data" />
+ </form>
+ <?php
+    $host = "tcp:codegraphsdb.database.windows.net,1433";
+    $user = "codegraphs@codegraphsdb";
+    $pass = "CUMI12panggang";
+    $db = "submissionDicodingCRUD";
+    try {
+        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
+        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    } catch(Exception $e) {
+        echo "Failed: " . $e;
+    }
     if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
@@ -59,57 +81,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
             echo "Failed: " . $e;
         }
     }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Submission Dicoding 1</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        <div class="card">
-          <div class="card-header">
-            Data Diri
-          </div>
-          <div class="card-body">
-              <form method="post" action="index.php">
-               <div class="form-group">
-                    <label for="email">Nama:</label>
-                    <input type="text" name="name" class="form-control" placeholder="Name"/>
-               <div>
-                   
-               <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" class="form-control" placeholder="E-Mail"/>
-               <div>
-                   
-               
-               <div class="form-group">
-                    <label for="email">Jobs:</label>
-                    <input type="text" name="job" class="form-control" placeholder="Jobs"/>
-               <div>
-                   
-               
-               <div class="form-group">
-                    <label for="email">Date:</label>
-                    <input type="date" name="date" class="form-control" placeholder="Date"/>
-               <div>
-               <div class="col-md-12">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
-                    <input type="submit" class="btn btn-warning" name="load_data" value="Load Data" />
-               </div>
-              </form>
-          </div>
-        </div>
-    </div>
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+ ?>
+ </body>
 </html>
