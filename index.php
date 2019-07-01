@@ -34,20 +34,24 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
           <div class="card-body">
               <form method="post" action="index.php">
                <div class="form-group">
+                    <label for="email">Nama:</label>
                     <input type="text" name="name" class="form-control" placeholder="Name"/>
                <div>
                    
                <div class="form-group">
+                    <label for="email">Email:</label>
                     <input type="text" name="email" class="form-control" placeholder="E-Mail"/>
                <div>
                    
                
                <div class="form-group">
+                    <label for="email">Jobs:</label>
                     <input type="text" name="job" class="form-control" placeholder="Jobs"/>
                <div>
                    
                
                <div class="form-group">
+                    <label for="email">Date:</label>
                     <input type="date" name="date" class="form-control" placeholder="Date"/>
                <div>
                <input type="submit" name="submit" class="btn btn-primary"/>
